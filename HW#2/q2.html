@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to list all the items in the array.</p>
+<button onclick="findEvens(nums)">Find Evens</button>
+<button onclick="findOdds(nums)">Find Odds</button>
+
+<p id="even"></p>
+
+<p id="odd"></p>
+
+
+<script>
+"use strict";
+
+var evenP = document.getElementById("even");
+var oddP = document.getElementById("odd");
+
+var nums = [1,2,34,54,55,34,32,11,19,17,54,66,13];
+var evens = [];
+var odds = [];
+
+var findEvens = function(nums){
+    for (var i = 0; i < nums.length; i++) {
+
+        if ((nums[i] % 2) == 0) {
+            evens.push(nums[i]);
+        }
+        
+    }
+
+    evenP.innerHTML = evenP.innerHTML + "evens: [" + evens + "]";
+
+}
+
+var findOdds = function(nums){
+       for (var i = 0; i < nums.length; i++) {
+
+        if ((nums[i] % 2) != 0) {
+            odds.push(nums[i]);
+        }
+        
+    }
+    oddP.innerHTML = oddP.innerHTML + "evens: [" + odds + "]";
+}
+
+
+// findEvens(nums);
+
+// console.log(evens);
+
+</script>
+
+</body>
+</html>
+
