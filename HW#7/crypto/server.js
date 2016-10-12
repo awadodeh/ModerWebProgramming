@@ -19,6 +19,10 @@ app.get('/', function(req,res){
         var plain =decrypt(key, doc.message);
 
         console.log("\n" +plain);
+        res.render('index.ejs',{title:'Decription for My message',message: plain} );
+
+        db.close();
+        // return;
 
         
     });
