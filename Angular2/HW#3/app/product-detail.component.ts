@@ -1,17 +1,20 @@
 import { Component, Input } from '@angular/core';
+import { Product } from './product';
 
 @Component({
   selector: 'my-product-detail',
+
+
    template: `
-       <div *ngIf="selectedProduct
+       <div *ngIf="product
     ">
-      <h2>{{selectedProduct
+      <h2>{{product
       .name}} details!</h2>
-      <div><label>id: </label>{{selectedProduct
+      <div><label>id: </label>{{product
       .id}}</div>
       <div>
         <label>name: </label>
-        <input [(ngModel)]="selectedProduct
+        <input [(ngModel)]="product
         .name" placeholder="name"/>
       </div>
     </div>
@@ -20,4 +23,7 @@ import { Component, Input } from '@angular/core';
 
 
 export class ProductDetailComponent {
+  
+  @Input()  
+  product:Product;
 }
