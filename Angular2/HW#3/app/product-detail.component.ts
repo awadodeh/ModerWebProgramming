@@ -26,4 +26,5 @@ export class ProductDetailComponent {
   
   @Input()  
   product:Product;
+  products: Product[];
 }
