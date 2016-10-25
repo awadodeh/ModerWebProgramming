@@ -1,0 +1,20 @@
+{
+  "name": "ng2do-mean-app",
+  "version": "1.0.0",
+  "description": "A MEAN stack app would typically consist of a server layer built with Nodejs & Express – Express being the web framework. MongoDB for data persistence & Angular as the client side MVW framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Awad Owda",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.2",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0",
+    "morgan": "^1.7.0",
+    "path": "^0.12.7"
+  }
+}
