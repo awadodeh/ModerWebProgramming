@@ -22,7 +22,10 @@ export class TodoService {
         
     } 
 
-    addTodos(): void {} // stub
+    // addTodos(todo:Todo): Todo {
+    //     return this.http.post(this.todosUrl).toPromise()
+    //     .then()
+    // } // stub
 
     updateTodos(): void {} // stub
 

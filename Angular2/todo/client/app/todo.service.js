@@ -23,7 +23,10 @@ var TodoService = (function () {
             .then(function (response) { return JSON.parse(response.text()); });
         //    .catch(this.handleError);
     };
-    TodoService.prototype.addTodos = function () { }; // stub
+    // addTodos(todo:Todo): Todo {
+    //     return this.http.post(this.todosUrl).toPromise()
+    //     .then()
+    // } // stub
     TodoService.prototype.updateTodos = function () { }; // stub
     TodoService.prototype.deleteTodos = function () { }; // stub
     TodoService = __decorate([

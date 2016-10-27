@@ -14,11 +14,19 @@ var TodoComponent = (function () {
     function TodoComponent(todoService) {
         this.todoService = todoService;
         this.title = 'Todo App';
+        this.toggles = [
+            { value: 'toggled', display: 'Toggled' },
+            { value: 'untoggled', display: 'UnToggled' },
+        ];
     }
     TodoComponent.prototype.onSelect = function (todo) {
         this.selectedTodo = todo;
     };
     TodoComponent.prototype.getTodos = function () {
+        var _this = this;
+        this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
+    };
+    TodoComponent.prototype.addTodo = function () {
         var _this = this;
         this.todoService.getTodos().then(function (todos) { return _this.todos = todos; });
     };
@@ -28,8 +36,8 @@ var TodoComponent = (function () {
     TodoComponent = __decorate([
         core_1.Component({
             selector: 'my-todo',
-            template: "\n    <h1>My Todo-List</h1>\n    <ul class=\"todos\">\n      <li *ngFor=\"let todo of todos\"\n        [class.selected]=\"todo === selectedTodo\"\n        (click)=\"onSelect(todo)\">\n        <span class=\"badge\"></span> {{todo.text}}\n      </li>\n    </ul>\n     <my-todo-detail [todo]=\"selectedTodo\"></my-todo-detail>\n  ",
-            styles: ["\n  \n  \n  .selected {\n    background-color: #CFD8DC !important;\n    color: white;\n  }\n  .todos {\n    margin: 0 0 2em 0;\n    list-style-type: none;\n    padding: 0;\n    width: 15em;\n  }\n  .todos li {\n    cursor: pointer;\n    position: relative;\n    left: 0;\n    background-color: #EEE;\n    margin: .5em;\n    padding: .3em 0;\n    height: 1.6em;\n    border-radius: 4px;\n  }\n  .todos li.selected:hover {\n    background-color: #BBD8DC !important;\n    color: white;\n  }\n  .todos li:hover {\n    color: #607D8B;\n    background-color: #DDD;\n    left: .1em;\n  }\n  .todos .text {\n    position: relative;\n    top: -3px;\n  }\n  .todos .badge {\n    display: inline-block;\n    font-size: small;\n    color: white;\n    padding: 0.8em 0.7em 0 0.7em;\n    background-color: #607D8B;\n    line-height: 1em;\n    position: relative;\n    left: -1px;\n    top: -4px;\n    height: 1.8em;\n    margin-right: .8em;\n    border-radius: 4px 0 0 4px;\n  }\n"],
+            templateUrl: 'app/todolist/todo.html',
+            styleUrls: ['app/todolist/todolist.css'],
             providers: [todo_service_1.TodoService]
         }), 
         __metadata('design:paramtypes', [todo_service_1.TodoService])

@@ -11,11 +11,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
-var app_component_1 = require('./app.component');
 var todo_detail_component_1 = require('./todo-detail.component');
-var todo_component_1 = require('./todo.component');
 var todo_service_1 = require('./todo.service');
 var http_1 = require('@angular/http');
+// import { TodoList }  from './components/todoList';
+var todos_1 = require('./components/todos');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -27,14 +27,17 @@ var AppModule = (function () {
                 http_1.HttpModule
             ],
             declarations: [
-                app_component_1.AppComponent,
+                // AppComponent,
                 todo_detail_component_1.TodoDetailComponent,
-                todo_component_1.TodoComponent
+                //  AppComponent
+                //  TodoComponent//,
+                todos_1.TodosComponent
             ],
             providers: [
                 todo_service_1.TodoService
             ],
-            bootstrap: [app_component_1.AppComponent]
+            // bootstrap: [ AppComponent ]
+            bootstrap: [todos_1.TodosComponent]
         }), 
         __metadata('design:paramtypes', [])
     ], AppModule);

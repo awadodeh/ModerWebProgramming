@@ -3,16 +3,7 @@ import { Todo } from './todo';
 
 @Component({
   selector: 'my-todo-detail',
-  template: `
-   <div *ngIf="todo">
-      <h2>{{todo.txt}} details!</h2>
-      <div><label>id: </label>{{todo.id}}</div>
-      <div>
-        <label>text: </label>
-        <input [(ngModel)]="todo.txt" placeholder="txt"/>
-      </div>
-    </div>
-`
+  templateUrl: 'app/todolist/tododetails.html'
 })
 export class TodoDetailComponent {
      @Input()

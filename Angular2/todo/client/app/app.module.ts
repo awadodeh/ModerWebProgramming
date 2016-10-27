@@ -8,6 +8,8 @@ import { TodoService }         from './todo.service';
 import { RouterModule }   from '@angular/router';
 import { HttpModule }    from '@angular/http';
 
+// import { TodoList }  from './components/todoList';
+import { TodosComponent }  from './components/todos';
 
 @NgModule({
   imports: [
@@ -16,13 +18,18 @@ import { HttpModule }    from '@angular/http';
     HttpModule
   ],
   declarations: [
-    AppComponent,
+    // AppComponent,
      TodoDetailComponent,
-     TodoComponent
+    //  AppComponent
+    //  TodoComponent//,
+     TodosComponent
+     
+
   ],
    providers: [
     TodoService
   ],
-  bootstrap: [ AppComponent ]
+  // bootstrap: [ AppComponent ]
+    bootstrap:[TodosComponent]
 })
 export class AppModule { }

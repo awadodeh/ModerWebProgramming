@@ -1,0 +1,33 @@
+<h1>My Todo-List</h1>
+
+<input class="new-todo"
+  [(ngModel)]="newTodo" (keyup.enter)="addItem()">
+<button class="add" (click)="addItem()">Add</button>
+
+    <ul class="todos">
+      <li *ngFor="let todo of todos"
+        [class.selected]="todo === selectedTodo"
+        (click)="onSelect(todo)">
+        <span class="badge">
+        <div>
+            <label>
+                <input type="checkbox" name="isActive"  [(ngModel)]="todo.isCompleted">
+                Is Completed
+            </label>
+        </div>    
+<!--
+        <div>
+            <input type="hidden" name="toggle" [(ngModel)]="todo.isCompleted">
+            <div>
+                <label>
+                    <input type="checkbox"
+                        [checked]="user.toggle === toggles[0].value" 
+                        (change)="$event.target.checked? (user.toggle =  toggles[0].value) : (user.toggle = toggles[1].value)">
+                    {{ toggles[0].display }}
+                </label>
+            </div>
+        </div>-->
+        </span> {{todo.text}}
+      </li>
+    </ul>
+<my-todo-detail [todo]="selectedTodo"></my-todo-detail>
