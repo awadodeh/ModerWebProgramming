@@ -9,16 +9,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
+require('rxjs/add/operator/toPromise');
 var TodoService = (function () {
-    function TodoService() {
+    function TodoService(http) {
+        this.http = http;
+        // private todosUrl = 'app/heroes';  // URL to web api 
+        this.todosUrl = 'http://localhost:3000/api/v1/todos';
     }
-    TodoService.prototype.getTodos = function () { }; // stub
+    TodoService.prototype.getTodos = function () {
+        return this.http.get(this.todosUrl)
+            .toPromise()
+            .then(function (response) { return JSON.parse(response.text()); });
+        //    .catch(this.handleError);
+    };
     TodoService.prototype.addTodos = function () { }; // stub
     TodoService.prototype.updateTodos = function () { }; // stub
     TodoService.prototype.deleteTodos = function () { }; // stub
     TodoService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], TodoService);
     return TodoService;
 }());

@@ -1,11 +1,23 @@
 var express = require('express');
 var router = express.Router();
 var mongojs = require('mongojs');
-var db = mongojs('mongodb://admin:admin123@ds037827.mongolab.com:37827/ng2todoapp', ['todos']);
+// Load our API routes for the todo app
+// import todoRoutes from './routes/_todo.router.js';
+
+var mongoose = require('mongoose');
+// Create a schema for the Todo model
+var todoSchema = new mongoose.Schema({
+  // The only data we need to manage for our todos are their text
+  text: { type : String },
+  isCompleted: {type: Boolean}
+});
+
+var todos = mongoose.model('todos', todoSchema);
+mongoose.connect('mongodb://admin:admin123@ds037827.mongolab.com:37827/ng2todoapp');
  
 /* GET All Todos */
 router.get('/todos', function(req, res, next) {
-    db.todos.find(function(err, todos) {
+    todos.find({},function(err, todos) {
         if (err) {
             res.send(err);
         } else {
@@ -15,8 +27,8 @@ router.get('/todos', function(req, res, next) {
 });
  
 /* GET One Todo with the provided ID */
-router.get('/todo/:id', function(req, res, next) {
-    db.todos.findOne({
+router.get('/todos/:id', function(req, res, next) {
+    todos.findOne({
         _id: mongojs.ObjectId(req.params.id)
     }, function(err, todos) {
         if (err) {
@@ -28,7 +40,7 @@ router.get('/todo/:id', function(req, res, next) {
 });
  
 /* POST/SAVE a Todo */
-router.post('/todo', function(req, res, next) {
+router.post('/todos', function(req, res, next) {
     var todo = req.body;
     if (!todo.text || !(todo.isCompleted + '')) {
         res.status(400);
@@ -36,7 +48,13 @@ router.post('/todo', function(req, res, next) {
             "error": "Invalid Data"
         });
     } else {
-        db.todos.save(todo, function(err, result) {
+
+        var todo_obj = new todos({
+            text: todo.text,
+            isCompleted: todo.isCompleted
+            });
+
+        todo_obj.save(function(err, result) {
             if (err) {
                 res.send(err);
             } else {
@@ -47,7 +65,7 @@ router.post('/todo', function(req, res, next) {
 });
  
 /* PUT/UPDATE a Todo */
-router.put('/todo/:id', function(req, res, next) {
+router.put('/todos/:id', function(req, res, next) {
     var todo = req.body;
     var updObj = {};
  
@@ -64,7 +82,7 @@ router.put('/todo/:id', function(req, res, next) {
             "error": "Invalid Data"
         });
     } else {
-        db.todos.update({
+        todos.update({
             _id: mongojs.ObjectId(req.params.id)
         }, updObj, {}, function(err, result) {
             if (err) {
@@ -79,16 +97,18 @@ router.put('/todo/:id', function(req, res, next) {
 });
  
 /* DELETE a Todo */
-router.delete('/todo/:id', function(req, res) {
-    db.todos.remove({
-        _id: mongojs.ObjectId(req.params.id)
-    }, '', function(err, result) {
+router.delete('/todos/:id', function(req, res) {
+    todos.remove({
+        _id: req.params.id
+    }, function(err, result) {
         if (err) {
             res.send(err);
         } else {
             res.json(result);
         }
     });
+
+    // todoRoutes(app, router);
  
 });
  
