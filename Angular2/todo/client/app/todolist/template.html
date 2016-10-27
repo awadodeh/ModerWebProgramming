@@ -17,13 +17,21 @@
         Typing: {{ newTodo }}
       </div>
 
+      
+
       <ul>
-      <li *ngFor="let todo of todos; let i=index">
-            <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" />
-          <span [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</span>
-          <span (click)="deleteTodo(i)" class="delete-icon">[X]</span>
-        </li>
-        </ul>
+        <li *ngFor="let todo of todos; let i=index">
+              <input type="checkbox" class="checkbox" [(ngModel)]="todo.completed" />
+            <span [ngClass]="{'checked': todo.completed}">{{ todo.newTodo }}</span>
+            <span (click)="deleteTodo(i)" class="delete-icon">[X]</span>
+          </li>
+
+          <li *ngFor="let todo of todos1; let i=index">
+              <input type="checkbox" class="checkbox" [(ngModel)]="todo.isCompleted" />
+            <span [ngClass]="{'checked': todo.isCompleted}">{{ todo.text }}</span>
+            <span (click)="deleteTodo(i)" class="delete-icon">[X]</span>
+          </li>
+      </ul>
 
         <div class="mtop20">
            <button (click)="deleteSelectedTodos()">Delete Selected</button>
